@@ -28,15 +28,11 @@ https://cdn.jsdelivr.net/gh/leeby9699/leeby@main/card/Loon-PurityCard.plugin
 
 ## 兼容版本
 
-| Loon 版本 | 用哪个文件 | 脚本语法 |
-| --- | --- | --- |
-| **3.5.1 (983) 及以上**（含 3.5.3） | 根目录的 `Loon-NodePurity.plugin`、`card/Loon-PurityCard.plugin` | 新版 `generic then script(...) with ...` |
-| 3.2.1 – 3.5.0 | `legacy/` 下的同名文件 | 旧版 `generic script-path=...` |
-| Quantumult X | 直接用 `card/purity-card.js` | QX 的 `event-interaction` |
+插件使用 Loon **3.5.1 (983) 及以上**的新版 Script 语法（`generic then script(...) with ...`），3.5.3 实测可用。
 
-新版语法从 Loon 3.5.1 (983) 开始引入，旧写法仍作为输入兼容，但 Loon 自己保存配置时统一输出新语法——所以 3.5.1 之后建议直接用根目录这版，少一层兼容转换。
+`#!loon_version = 3.5.1(983)` 是「最低版本要求」，不是「只支持该版本」。
 
-`#!loon_version` 只是「最低版本要求」的声明，不是「只支持该版本」。根目录版本声明为 `3.5.1(983)`，`legacy/` 版本声明为 `3.2.1(734)`。
+旧版 Loon（3.2.1 – 3.5.0）不支持新语法，需要把插件里的两行改回旧写法：`generic script-path=...,tag=...,timeout=60`（去掉 `then script("...")` 和 `with`，`img_url` 改回 `img-url`），脚本本身不用改。
 
 ## 两个版本
 
@@ -68,7 +64,6 @@ purity.js                    通知版脚本
 Loon-NodePurity.plugin       通知版插件（新语法，3.5.1+）
 card/purity-card.js          卡片版脚本（Loon / QX 通用）
 card/Loon-PurityCard.plugin  卡片版插件（新语法，3.5.1+）
-legacy/                      旧语法插件（3.2.1 – 3.5.0）
 assets/qr-notify.png         通知版导入二维码
 assets/qr-card.png           卡片版导入二维码
 ```
