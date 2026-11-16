@@ -8,10 +8,12 @@
 
 在 iPhone 上点链接，会拉起 Loon 弹出安装确认：
 
-| 版本 | 导入 |
+| 版本 | 导入链接 |
 | --- | --- |
-| 通知版 | [点此导入](https://www.nsloon.com/openloon/import?plugin=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fleeby9699%2Fleeby%40main%2FLoon-NodePurity.plugin) |
-| 卡片版 | [点此导入](https://www.nsloon.com/openloon/import?plugin=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fleeby9699%2Fleeby%40main%2Fcard%2FLoon-PurityCard.plugin) |
+| 通知版 | `loon://import?plugin=https://cdn.jsdelivr.net/gh/leeby9699/leeby@main/Loon-NodePurity.plugin` |
+| 卡片版 | `loon://import?plugin=https://cdn.jsdelivr.net/gh/leeby9699/leeby@main/card/Loon-PurityCard.plugin` |
+
+> 链接里的 `@main` **必须保持原样**，不能写成 `%40main`。jsDelivr 对 URL 编码后的 `@` 会直接返回 400（`Invalid URL`），Loon 收到这段报错文字就会提示「插件内容不是有效的」。
 
 不方便点链接就用 Loon →「配置」→「插件」→ 右上角 `+` → 选 URL，粘贴：
 
@@ -19,6 +21,8 @@
 https://cdn.jsdelivr.net/gh/leeby9699/leeby@main/Loon-NodePurity.plugin
 https://cdn.jsdelivr.net/gh/leeby9699/leeby@main/card/Loon-PurityCard.plugin
 ```
+
+这种方式最稳：Loon 会直接下载你粘贴的地址，不经过任何链接跳转。
 
 二维码在 `assets/` 目录：`qr-notify.png`、`qr-card.png`。
 
@@ -85,6 +89,9 @@ event-interaction https://cdn.jsdelivr.net/gh/leeby9699/leeby@main/card/purity-c
 QX 里没有 `[Panel]`/`generic` 的概念，`event-interaction` 就是它的交互式脚本类型；Loon 对应的是 `generic`。
 
 ## 常见问题
+
+**导入时提示「插件内容不是有效的」**
+先确认地址是 `@main` 而不是 `%40main`（见上文）。若用 `loon://` 链接仍失败，改用 Loon →「配置」→「插件」→ `+` → 选 URL，直接粘贴上面那两条 https 地址。
 
 **插件装了但「脚本」里没有这一项**
 不同版本入口不同：3.5 之后在首页「脚本」列表；老版本在「配置 → 脚本」。条目被标红通常是脚本地址不可达。
