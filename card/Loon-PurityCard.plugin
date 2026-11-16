@@ -1,0 +1,26 @@
+#!name = 节点纯净度详情（卡片版）
+#!desc = 在节点页选中节点运行后，直接弹出 HTML 详情卡片：纯净评分、住宅/机房/广播 IP 判定、欺诈分与风险等级。数据源 IPPure + ipinfo。形态仿 event-interaction 交互式脚本。
+#!author = WorkBuddy
+#!homepage = https://github.com/leeby9699/leeby
+#!icon = https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Available_1.png
+#!date = 2026-11-16
+#!tag = 网络工具,节点检测
+#!loon_version = 3.2.1(734)
+
+# ─────────────────────────────────────────────────────────────
+# 脚本地址已配好，导入即可使用。若日后地址失效，替换下面
+# script-path 即可。脚本对 Loon(generic) 与 QX(event-interaction)
+# 通用，无需修改。
+# ─────────────────────────────────────────────────────────────
+
+[Rule]
+# 检测域名走代理；脚本内已显式绑定节点，这里只是兜底
+DOMAIN,ippure.com,PROXY
+DOMAIN,ipinfo.io,PROXY
+
+[Script]
+# Loon：首页「脚本」→ 选择节点 → 运行，弹出详情卡片
+generic script-path=https://cdn.jsdelivr.net/gh/leeby9699/leeby@main/card/purity-card.js,tag=节点纯净度详情,timeout=60,img-url=checkmark.shield.fill.system,enable=true
+
+# Quantumult X 用户等价写法（在 QX 的 [task_local] 中使用，Loon 无需此行）：
+# event-interaction https://cdn.jsdelivr.net/gh/leeby9699/leeby@main/card/purity-card.js, tag=节点纯净度详情, img-url=checkmark.shield.fill.system, enabled=true
