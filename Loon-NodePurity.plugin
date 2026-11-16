@@ -5,12 +5,13 @@
 #!icon = https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Available_1.png
 #!date = 2026-11-16
 #!tag = 网络工具,节点检测
-#!loon_version = 3.2.1(734)
+#!type = normal
+#!loon_version = 3.5.1(983)
 
 # ─────────────────────────────────────────────────────────────
-# 脚本地址已配好，直接导入即可使用。
-# 若日后地址失效（例如托管到期），把下面 2 处 script-path 换成自己的
-# purity.js 直链即可，写法见同目录 README.md。
+# 语法版本：Loon 3.5.1 (983) 起的新版 Script 语法。
+# 3.2.1 – 3.5.0 请改用 legacy/Loon-NodePurity.plugin。
+# 脚本地址已配好，导入即可使用。
 # ─────────────────────────────────────────────────────────────
 
 [Rule]
@@ -21,8 +22,8 @@ DOMAIN,ip.sb,PROXY
 DOMAIN,scamalytics.com,PROXY
 
 [Script]
-# 手动检测：Loon 首页 →「脚本」→ 选择节点后运行；不选节点则检测当前出口
-generic script-path=https://cdn.jsdelivr.net/gh/leeby9699/leeby@main/purity.js,tag=节点纯净度检测,timeout=60,img-url=https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Available_1.png,enable=true
+# 手动检测：Loon 首页 →「脚本」→ 选节点后运行；不选节点则检测当前出口
+generic then script("https://cdn.jsdelivr.net/gh/leeby9699/leeby@main/purity.js") with tag="节点纯净度检测", img_url="shield.lefthalf.filled.system", timeout=60, enable=true
 
-# 每日巡检：默认关闭。想要定时监控就把 enable 改成 true，并按需修改阈值
-cron "0 9 * * *" script-path=https://cdn.jsdelivr.net/gh/leeby9699/leeby@main/purity.js,tag=纯净度 · 每日巡检,timeout=60,enable=false,argument="mode=patrol&threshold=55"
+# 每日巡检：默认关闭。把 enable 改成 true 即启用，threshold 为告警阈值
+cron "0 9 * * *" then script("https://cdn.jsdelivr.net/gh/leeby9699/leeby@main/purity.js", "mode=patrol&threshold=55") with tag="纯净度 · 每日巡检", timeout=60, enable=false
